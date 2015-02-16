@@ -19,9 +19,11 @@ class PostsController < ApplicationController
      @topic = Topic.find(params[:topic_id])
       @post = current_user.posts.build(params.require(:post).permit(:title, :body))
     authorize @post
+    summary_body = params[:post][:summary]
+    @post.summary = Summary.new body: summary_body
      if @post.save
        flash[:notice] = "Post was saved."
-       redirect_to @post
+       redirect_to [@topic, @post]
      else
        flash[:error] = "There was an error saving the post. Please try again."
        render :new

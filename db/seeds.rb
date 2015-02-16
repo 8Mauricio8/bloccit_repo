@@ -36,14 +36,15 @@
     body:   Faker::Lorem.paragraph
   )
 end
+posts = Post.all
  
  # Create Comments
- #100.times do
-  # Comment.create!(
-   #  post: posts.sample,
-    # body: Faker::Lorem.paragraph
-   #)
- #end
+ 100.times do
+   Comment.create!(
+     post: posts.sample,
+     body: Faker::Lorem.paragraph
+   )
+ end
  
 # Create an admin user
  admin = User.new(
